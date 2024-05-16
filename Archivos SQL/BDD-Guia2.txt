@@ -1,0 +1,115 @@
+******Datazo******
+select *
+from personas
+where lower(nombre) like '%gabas%'
+order by nombre desc
+
+1)
+SELECT columna1, columna2
+FROM mi_tabla
+ORDER BY columna1 DESC, columna2 ASC;
+
+2)
+select cuit,nombre,'................................'
+from clientes
+order by cuit asc;
+
+3)
+select cuit, nombre, '..........' as firma
+from personas
+
+4)
+select count(*) as CantPersonas
+from personas
+
+5)
+select tipo,numero from facturas
+where (tipo = '1' and numero = '12');
+
+6)
+select count(*) from facturas_items
+where (factura_tipo = '1' and factura_numero = '12');
+
+7)
+select ((sum(cantidad))/count(*)) as promedioLineal from facturas_items
+where (factura_tipo = '1' and factura_numero = '12');
+
+8,9)
+select *,
+	(cantidad*precio) as subTotal,
+	case
+		when descuento_porcentaje <= 0 then (cantidad*precio)
+		else (cantidad*precio)*(1-descuento_porcentaje/100)
+	end as total
+from facturas_items
+where (factura_tipo = '1' and factura_numero = '12')
+order by subTotal desc;
+
+10)
+select distinct situacion_iva
+from clientes
+
+11, 12, 13)
+select nombre||' - '||calle||' '||numero_puerta||' Piso: '||coalesce(piso,'-')||' Dpto: '||coalesce(dpto,'-') as info
+from clientes
+order by nombre asc;
+que pasa si hay nulls? kgaste, te pone null todo. Una forma es usar fcion coalesce o concat.
+
+14) where nombre like '%e%'
+
+15)
+select * from personas;
+select left(right(cuit,9),8) as dni,
+		cuit, nombre,
+		Case
+			when lower(sexo) like 'masculin%' then 'M'
+			when lower(sexo) like 'femenin%' then 'F'
+			else null
+		end as sexoDOMINIO
+from personas
+order by cuit asc;
+
+16)
+select * from productos
+where nombre like 'PI%'
+
+17) select * from productos
+    where nombre like '_O%'
+
+18)alter table clientes
+add column mail varchar(120)
+
+19)UPDATE clientes
+SET mail = 'mafontana@gmail.com'
+WHERE lower(nombre) = 'fontana maria emilia';
+
+UPDATE clientes
+SET mail = '@todocaseroparana'
+WHERE lower(nombre) = 'todo casero';
+
+UPDATE clientes
+SET mail = 'nobles juan martin@ gmail'
+WHERE lower(nombre) = 'nobles juan';
+
+20)
+a) select distinct length(fechanacimiento) as LargoFecha from personas;
+b) select * from personas where length(fechanacimiento) = 4;
+c) select cuit,nombre,fechanacimiento,TO_DATE(fechanacimiento,'DD-MM-YYYY') as ddate
+from personas
+limit 10;
+
+21) me la chupa regex
+
+22) ?
+
+23) SELECT TIPO_PERSONA, SITUACION_IVA, COUNT(*) AS CLIENTES_REGISTRADOS
+FROM clientes
+GROUP BY TIPO_PERSONA, SITUACION_IVA;
+
+24)select factura_tipo, factura_numero, cantidad,
+	case
+		when descuento_porcentaje <= 0 then (cantidad*precio)
+		else (cantidad*precio)*(1-descuento_porcentaje/100)
+	end as total
+from facturas_items
+where cantidad > 1;

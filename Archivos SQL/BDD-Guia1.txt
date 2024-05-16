@@ -1,0 +1,49 @@
+
+
+6)
+CREATE OR REPLACE VIEW v_mujeres AS
+SELECT *, date_part('year'::text, age(personas.fecha_nac)) AS edad
+FROM personas
+WHERE sexo = 'F' or sexo = 'f';
+
+8)
+CREATE TABLE IF NOT EXISTS public.propietarios_vehiculos (
+    dni varchar(8) NOT NULL,
+    patente varchar(9) NOT NULL,
+    fecha_compra date,
+    fecha_venta date,
+    PRIMARY KEY (dni, patente),
+    FOREIGN KEY (dni) REFERENCES personas (dni),
+    FOREIGN KEY (patente) REFERENCES autos (patente));
+
+9)
+ALTER TABLE propietarios_vehiculos
+ADD CONSTRAINT fk_propietariosVehiculos_Autos FOREIGN KEY (patente)
+REFERENCES autos(patente);
+
+10)
+CREATE TABLE IF NOT EXISTS polizas (
+    nropoliza integer NOT NULL,
+    compania character varying(20),
+    vigencia_desde date,
+    vigencia_hasta date,
+    patente varchar(9),
+    PRIMARY KEY (nropoliza),
+    FOREIGN KEY (patente) REFERENCES autos (patente));
+
+11) 
+drop view v_mujeres; ***????****
+alter table personas alter column nombre type varchar(60);
+
+12)
+alter table personas add column cuil_num numeric(11);
+update personas set cuil_num = cast(cuil as numeric);
+ALTER TABLE personas DROP COLUMN cuil;
+o bien:
+ALTER TABLE personas
+ALTER COLUMN cuil TYPE NUMERIC(11) USING cuil::NUMERIC(11,0);
+
+extra) modificar tupla
+UPDATE personas
+SET cuil = '99999999'
+WHERE cuil = '20g40166777';

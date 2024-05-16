@@ -1,0 +1,77 @@
+.pantalla {
+    text-align: right;
+    background-color: rgb(255, 255, 255);
+    width: 250px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.calculadora{
+    display: inline-block;
+    margin: 10px;
+    margin-left:30%; /*este cambiar*/
+    padding: 20px;
+    background-color: rgb(128, 128, 128);
+    border-radius: 15px;
+}
+
+
+.displaytable {
+    display: table;
+}
+
+.displaytable-cell {
+    display: table-cell;
+}
+  
+.btnCalc {
+    width: 60px;
+    height: 35px;
+    font-size: 20px;
+    border-radius: 50px;
+    font-family: monospace;
+}
+
+.btnNumeros{
+    width: 250px;
+}
+
+.btnOperaciones{
+    margin-top: 5%;
+    width: 200px;
+}
+.btnGrande{
+    margin-top: 3%;
+    width: 100%;
+    height: 30%px;
+}
+.btnIgual{
+    margin-top: 3%;
+    width: 100%;
+    height: 30%px;
+}
+
+.btnNegro { 
+    background-color: black; 
+    color: white;
+}
+
+.btnVerde {
+    width: 62%;
+    height: 30%px;
+    background-color: #91ff7d;
+}
+
+.btnAmarillo {
+    width: 40px;
+    background-color: #dfeb3f;
+}
+
+.btnAzul {
+    background-color: #6288f3;
+}
+
+.btnRojo {
+    background-color: #f76767;
+}
